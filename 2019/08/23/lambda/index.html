@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>blog</title>
+  <title>java8之lambda表达式 | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="lambda 函数式编程">
+<meta name="keywords" content="lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8之lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/lambda/index.html">
 <meta property="og:site_name" content="blog">
+<meta property="og:description" content="lambda 函数式编程">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-04T09:33:03.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog">
+<meta name="twitter:title" content="java8之lambda表达式">
+<meta name="twitter:description" content="lambda 函数式编程">
   
     <link rel="alternative" href="/atom.xml" title="blog" type="application/atom+xml">
   
@@ -140,16 +145,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-lambda" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-lambda" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/23/lambda/">java8之lambda表达式</a>
+    <h1 class="article-title" itemprop="name">
+      java8之lambda表达式
     </h1>
   
 
@@ -163,11 +166,52 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="java8-新特性-目录"><a href="#java8-新特性-目录" class="headerlink" title="java8 新特性 目录"></a>java8 新特性 目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">lambda 表达式</span><br><span class="line"></span><br><span class="line">函数式接口</span><br><span class="line"></span><br><span class="line">Stream</span><br><span class="line"></span><br><span class="line">Optional</span><br><span class="line"></span><br><span class="line">Predicate</span><br><span class="line"></span><br><span class="line">Function</span><br><span class="line"></span><br><span class="line">Consumer</span><br><span class="line"></span><br><span class="line">Filter</span><br><span class="line"></span><br><span class="line">Map-Reduce</span><br><span class="line"></span><br><span class="line">新的Date API</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/08/23/lambda/#more">more >></a>
-        
+
+<a id="more"></a>
+<h3 id="java8-lambda使用总结"><a href="#java8-lambda使用总结" class="headerlink" title="java8 lambda使用总结"></a>java8 lambda使用总结</h3><h4 id="List操作"><a href="#List操作" class="headerlink" title="List操作"></a>List操作</h4><p>java8之前操作List</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (Person person : personList) &#123;</span><br><span class="line">        System.out.println(person.getName());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>java8 lambda遍历List</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">personList.forEach(person -&gt;</span><br><span class="line">          System.out.println(person.getName())</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>过滤加遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">personList = personList.stream().filter(person -&gt; &quot;小明&quot;.equals(person.getName()))</span><br><span class="line">								.forEach(person -&gt; System.out.println(person.getName()));</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map操作"><a href="#Map操作" class="headerlink" title="Map操作"></a>Map操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@org.junit.Test</span><br><span class="line">   public void lambdaMapTest() &#123;</span><br><span class="line">       Map&lt;String, Object&gt; resultMap = new HashMap&lt;&gt;(16);</span><br><span class="line"></span><br><span class="line">       resultMap.put(&quot;A&quot;, 10);</span><br><span class="line">       resultMap.put(&quot;B&quot;, 20);</span><br><span class="line">       resultMap.put(&quot;C&quot;, 30);</span><br><span class="line">       resultMap.put(&quot;D&quot;, 40);</span><br><span class="line">       resultMap.put(&quot;E&quot;, 50);</span><br><span class="line">       resultMap.put(&quot;F&quot;, 60);</span><br><span class="line"></span><br><span class="line">       //java8 之前的遍历</span><br><span class="line">       for (Map.Entry&lt;String, Object&gt; entry : resultMap.entrySet()) &#123;</span><br><span class="line">           System.out.println(&quot;key: &quot; + entry.getKey() + &quot;,value: &quot; + entry.getValue());</span><br><span class="line">       &#125;</span><br><span class="line">	</span><br><span class="line">       System.out.println(&quot;=========================================&quot;);</span><br><span class="line">	</span><br><span class="line">       //java8 遍历</span><br><span class="line">       resultMap.forEach((key, value) -&gt;</span><br><span class="line">           System.out.println(&quot;key: &quot; + key + &quot;,value: &quot; + value)</span><br><span class="line">       );</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Grouping-by操作"><a href="#Grouping-by操作" class="headerlink" title="Grouping by操作"></a>Grouping by操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@org.junit.Test</span><br><span class="line">   public void lambdaGroupByTest() &#123;</span><br><span class="line">       List&lt;Person&gt; personList = new ArrayList&lt;&gt;();</span><br><span class="line">       personList.add(Person.builder().id(10).name(&quot;小明&quot;).address(&quot;上海&quot;).build());</span><br><span class="line">       personList.add(Person.builder().id(12).name(&quot;小白&quot;).address(&quot;北京&quot;).build());</span><br><span class="line">       personList.add(Person.builder().id(16).name(&quot;小黑&quot;).address(&quot;广州&quot;).build());</span><br><span class="line"></span><br><span class="line">       Map&lt;String, List&lt;Person&gt;&gt; collect = personList.stream().collect(Collectors.groupingBy(Person :: getAddress));</span><br><span class="line">       collect.forEach((key, value) -&gt;</span><br><span class="line">               System.out.println(&quot;key: &quot; + key + &quot;,value: &quot; + value));	</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">key: 广州,value: [Person(id=16, name=小黑, address=广州)]</span><br><span class="line">key: 上海,value: [Person(id=10, name=小明, address=上海)]</span><br><span class="line">key: 北京,value: [Person(id=12, name=小白, address=北京)]</span><br></pre></td></tr></table></figure>
+
+<h4 id="List转换为Map"><a href="#List转换为Map" class="headerlink" title="List转换为Map"></a>List转换为Map</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@org.junit.Test</span><br><span class="line">public void listConvertMapTest() &#123;</span><br><span class="line">    List&lt;Person&gt; personList = new ArrayList&lt;&gt;();</span><br><span class="line">    personList.add(Person.builder().id(10).name(&quot;小明&quot;).address(&quot;上海&quot;).build());</span><br><span class="line">    personList.add(Person.builder().id(12).name(&quot;小白&quot;).address(&quot;北京&quot;).build());</span><br><span class="line">    personList.add(Person.builder().id(16).name(&quot;小黑&quot;).address(&quot;广州&quot;).build());</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Person&gt; personMap = personList.stream().collect(Collectors.toMap((Person :: getName), (value -&gt; value)));</span><br><span class="line">    personMap.forEach((key, value) -&gt; System.out.println(key + &quot;:&quot; + value));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="FilterMap操作"><a href="#FilterMap操作" class="headerlink" title="FilterMap操作"></a>FilterMap操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@org.junit.Test</span><br><span class="line">   public void filterMapTest() &#123;</span><br><span class="line">       Map&lt;Integer, String&gt; resultMap = new HashMap&lt;&gt;(16);</span><br><span class="line">       resultMap.put(1, &quot;小黑&quot;);</span><br><span class="line">       resultMap.put(2, &quot;小白&quot;);</span><br><span class="line">       resultMap.put(3, &quot;小明&quot;);</span><br><span class="line">       resultMap.put(4, &quot;小红&quot;);</span><br><span class="line">       //before java iterator map</span><br><span class="line">       String result = null;</span><br><span class="line">       for (Map.Entry&lt;Integer, String&gt; entry : resultMap.entrySet()) &#123;</span><br><span class="line">           if (&quot;小白&quot;.equals(entry.getValue())) &#123;</span><br><span class="line">               result = entry.getKey() + &quot;&quot;;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(&quot;Before java 8 : &quot; + result);</span><br><span class="line">       //java8 Map-&gt;Stream-&gt;Filter-&gt;String</span><br><span class="line"></span><br><span class="line">       result = resultMap.entrySet().stream().filter(map -&gt; &quot;小白&quot;.equals(map.getValue())).map(map -&gt; map.getValue()).collect(Collectors.joining());</span><br><span class="line">       System.out.println(&quot;Java 8 : &quot; + result);</span><br><span class="line"></span><br><span class="line">       Map&lt;Integer, String&gt; collect = resultMap.entrySet().stream().filter(c -&gt; c.getKey() == 2).collect(Collectors.toMap(p -&gt; p.getKey(), p -&gt; p.getValue()));</span><br><span class="line">       System.out.println(collect);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -198,16 +242,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/23/lambda/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/23/lambda/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/23/Stream/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java8之Stream</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -222,99 +325,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Stream" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/23/Stream/">java8之Stream</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/23/Stream/" class="archive-article-date">
-  	<time datetime="2019-08-23T02:10:42.674Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<p>测试</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Stream</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/23/Stream/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java8-新特性-目录"><span class="toc-number">1.</span> <span class="toc-text">java8 新特性 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java8-lambda使用总结"><span class="toc-number">2.</span> <span class="toc-text">java8 lambda使用总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List操作"><span class="toc-number">2.1.</span> <span class="toc-text">List操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Map操作"><span class="toc-number">2.2.</span> <span class="toc-text">Map操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Grouping-by操作"><span class="toc-number">2.3.</span> <span class="toc-text">Grouping by操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List转换为Map"><span class="toc-number">2.4.</span> <span class="toc-text">List转换为Map</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FilterMap操作"><span class="toc-number">2.5.</span> <span class="toc-text">FilterMap操作</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
+  
+
   
 
 
@@ -337,8 +373,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
