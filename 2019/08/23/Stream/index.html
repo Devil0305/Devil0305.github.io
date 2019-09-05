@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="Stream 优雅的筛选、去重等">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-23T08:21:58.373Z">
+<meta property="og:updated_time" content="2019-09-05T07:52:36.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java8之Stream">
 <meta name="twitter:description" content="Stream 优雅的筛选、去重等">
@@ -165,9 +165,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p>测试</p>
+        <h3 id="简洁又快速的处理集合"><a href="#简洁又快速的处理集合" class="headerlink" title="简洁又快速的处理集合"></a>简洁又快速的处理集合</h3><p>java8 的核心毫无疑问是Stream，用函数式编程方式在集合类上进行复杂操作的工具。</p>
+<a id="more"></a>
+<h4 id="方法介绍"><a href="#方法介绍" class="headerlink" title="方法介绍"></a>方法介绍</h4><h5 id="1-Stream"><a href="#1-Stream" class="headerlink" title="1.Stream()"></a>1.Stream()</h5><p>最常用的将集合转换成stream</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span> <span class="built_in">list</span> = <span class="literal">new</span> ArrayList();</span><br><span class="line"><span class="built_in">list</span>.stream();</span><br></pre></td></tr></table></figure>
 
+<pre>
+<code class="java">
+List list = new ArrayList();
+list.stream();
+</code>
+</pre>
+
+<h5 id="2-filter-T-gt-boolean"><a href="#2-filter-T-gt-boolean" class="headerlink" title="2.filter(T -&gt; boolean)"></a>2.filter(T -&gt; boolean)</h5><p>保留boolean为true</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StreamFilterTest</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    List&lt;Person&gt; personList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    personList.<span class="keyword">add</span>(Person.builder().id(<span class="number">1</span>).name(<span class="string">"devil"</span>).address(<span class="string">"上海"</span>).build());</span><br><span class="line">    personList.<span class="keyword">add</span>(Person.builder().id(<span class="number">2</span>).name(<span class="string">"小琪"</span>).address(<span class="string">"中山"</span>).build());</span><br><span class="line">    personList.<span class="keyword">add</span>(Person.builder().id(<span class="number">3</span>).name(<span class="string">"小心"</span>).address(<span class="string">"南宁"</span>).build());</span><br><span class="line">    personList.<span class="keyword">add</span>(Person.builder().id(<span class="number">4</span>).name(<span class="string">"小雨"</span>).address(<span class="string">"上海"</span>).build());</span><br><span class="line"></span><br><span class="line">    personList = personList.stream().filter(person -&gt; <span class="string">"上海"</span>.<span class="keyword">equals</span>(person.getAddress()) &amp;&amp; <span class="string">"小雨"</span>.<span class="keyword">equals</span>(person.getName())).collect(Collectors.toList());</span><br><span class="line">    logger.info(personList.toString());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印结果</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Person(<span class="attribute">id</span>=4, <span class="attribute">name</span>=小雨, <span class="attribute">address</span>=上海)]</span><br></pre></td></tr></table></figure>
       
 
       
@@ -315,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简洁又快速的处理集合"><span class="toc-number">1.</span> <span class="toc-text">简洁又快速的处理集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法介绍"><span class="toc-number">1.1.</span> <span class="toc-text">方法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Stream"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.Stream()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-filter-T-gt-boolean"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.filter(T -&gt; boolean)</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
